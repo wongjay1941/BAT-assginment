@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="style.css">
+
+<!------------------LIght BOx for Gallery-------------->
+<link rel="stylesheet" href="lightbox.min.css">
+<script type="text/javascript" src="lightbox-plus-jquery.min.js"></script>
+<style>
+    html {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: black;
+    }
+
+    .logoPicture {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    
+    .loginContainer{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5px;
+
+        padding: 1%;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        text-align: center;
+        border-radius: 5px;
+    }
+    
+    .inputUsername, .inputPassword, .inputEmail{
+        background-color: white;
+        outline: 0;
+        border-width: 0 0 1px;
+        box-sizing: border-box;
+        margin:  10px auto;
+        height: 40px;
+        width: 80%;
+        display: block;
+        border-radius: 3px;
+    }
+    
+    .forgotPassowrd {
+        display: block;
+        margin-right: 10%;
+        float: right;
+        font-size: 12px;
+        color: black;
+        cursor: pointer;
+    }
+    
+    .loginAndsignUpText {
+        font-size: 15px;
+        color: black;
+        cursor: pointer;
+    }
+    
+    .loginAndsignUpText:hover, .forgotPassowrd:hover {
+        color: coral;
+        transition: all 0.25s ease;
+    }
+    
+    .btnSubmit {
+        display: block;
+        width: 250px;
+        margin: 70px auto 40px auto;
+        background-color: lightsalmon;
+        color: #ededed;
+        border-color: lightsalmon;
+        border-radius: 3px;
+        padding: 7px;
+        transition: all 0.5s ease;
+    }
+    
+    .btnSubmit:hover {
+        background-color: dimgrey;
+        color: #ededed;
+        border-color: dimgrey;
+    }
+
+</style>
+<head>
+    <title>Worklink</title>
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="loginContainer" class="loginContainer">
+        <div class="logoPicture">
+            <img id="logo" src="img/png/logo-black.png" style="width: 80%;"/>
+        </div>
+        <div id="actionDiv">
+            <form id="signUpForm" class="loginAndRegisterForm" style="display: inline" method="post">
+                <h1 style="margin-top: 5%;"><b>Sign Up</b></h1>
+                <div id="loginPart">
+                    <center>
+                        <table style="width: 80%;">
+                            <tr>
+                                <td style="width: 100%;">
+                                    <input id="signUpUsername" class="inputUsername" placeholder="Username" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="signUpEmail" class="inputEmail" placeholder="Email" type="text" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="signUpPassword" class="inputPassword" placeholder="Password" type="password" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="confirmPassword" class="inputPassword" placeholder="Confirm Password" type="password" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="tAndCCheckBox" type="checkbox" style="margin-left: 55px; margin-right: 10px;" /><span>I have agreed to the terms and conditions of Worklink.</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                    <button id="signUpBtn" href="index.html" type="submit" class="btnSubmit">Sign Up</button>
+                    <p>or</p>
+                    <p>
+                        Already have a Worklink account? 
+                        <a class="loginAndsignUpText" href="login.html">Login Here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+let signUpForm = document.getElementById("signUpForm");
+
+signUpForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+
+    let username = document.getElementById("signUpUsername").value;
+    let email = document.getElementById("signUpEmail").value;
+    let password = document.getElementById("signUpPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let tAndC = document.getElementById("tAndCCheckBox");
+
+    if(username && email && password && confirmPassword && tAndC.checked){
+
+        //Check email format
+        if(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            if(password == confirmPassword){
+                alert("Register Succesfully! Please login to your account.");
+                window.location.href = "/login.html";
+            }
+            else{
+                alert("Entered passwords are not the same!");
+            }
+            
+        }
+        else{
+            alert("Please check you email format!");
+        }
+    }
+    
+})
+</script>
