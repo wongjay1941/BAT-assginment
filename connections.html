@@ -232,7 +232,7 @@
                         <div class="card-body">
                             <h5 class="mb-3 card-title">Connections</h5>
                             <ul class="list-unstyled">
-                                <li><a href="#accountant" class="nav-link selected">Accountant</a></li>
+                                <li><a href="#accountant" class="nav-link">Accountant</a></li>
                                 <li><a href="#auditor" class="nav-link">Auditor</a></li>
                                 <li><a href="#entrepreneur" class="nav-link">Entrepreneur</a></li>
                                 <!-- Add more items as needed -->
@@ -847,11 +847,26 @@
                                                     <hr />
                                                 `;
 
-                        const accountantConnection = document.getElementById('accountantConnection');
-                        accountantConnection.insertAdjacentHTML('afterbegin', newPostTemplate);
-                        document.getElementById('message').value = '';
+                        const visibleConnection = getVisibleConnection();
+                        if (visibleConnection) {
+                            visibleConnection.insertAdjacentHTML('afterbegin', newPostTemplate);
+                            document.getElementById('message').value = '';
+                        }
                     }
                 });
+
+                function getVisibleConnection() {
+
+                    for (const connection in connections) {
+                        if (Object.prototype.hasOwnProperty.call(connections, connection)) {
+                            const connectionElement = connections[connection];
+                            if (connectionElement.style.display !== 'none') {
+                                return connectionElement;
+                            }
+                        }
+                    }
+                    return null;
+                }
                 /*End Region Make Posting*/
 
                 document.addEventListener("click", function (event) {
