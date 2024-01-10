@@ -26,10 +26,12 @@ if(loginForm != null){
 
 //----------------------------------------------------------------------------------------------- Sign up
 // Get selected interest
+//var selected_interest = [];
 var selected_interest = [];
-$('.circle').on('click', function(e){
-    let index = selected_interest.indexOf($(this).attr("id"));
 
+$('.circle').on('click', function(e){
+    console.log(selected_interest.length);
+    let index = selected_interest.indexOf($(this).attr("id"));
     if(index <= -1){
         selected_interest.push($(this).attr("id"));
         $(this).css('border-color', '#ffcc00');
@@ -43,7 +45,13 @@ $('.circle').on('click', function(e){
         $(this).css('border', "2px solid #333");
         console.log(selected_interest);
     }
-})
+
+    var interest_list = document.getElementById("interest_list");
+
+    if(typeof(interest_list) != 'undefined' && interest_list != null){
+        document.getElementById("interest_list").innerHTML = selected_interest;
+    }
+});
 
 if(signUpForm != null){
     signUpForm.addEventListener("submit", (e) =>{
@@ -108,4 +116,27 @@ function interest_modal(){
             modal.style.display = "none";
         }
     }
+}
+
+function save_changes(){
+    let username = document.getElementById("username_input").value;
+    let email = document.getElementById("email_input").value;
+    let profession = document.getElementById("profession_input").value;
+    let description = document.getElementById("description_input").value;
+
+    localStorage.username = username;
+    localStorage.email = email;
+    localStorage.profession = profession;
+    localStorage.description = description;
+    localStorage.selected_interest = selected_interest;
+
+    document.getElementById("interest_list").innerHTML = localStorage.selected_interest;
+
+    $("#username_input").prop('disabled', true);
+    $("#description_input").prop('disabled', true);
+    $("#email_input").prop('disabled', true);
+    $("#profession_input").prop('disabled', true);
+
+    $("#interestBtn").css("display", "none");
+    $("#saveBtn").css("display", "none");
 }

@@ -16,10 +16,174 @@
         <!------------------LIght BOx for Gallery-------------->
 
         <script type="text/javascript" src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
-        <script type="text/javascript" src="\script.js"></script>
-
         <title>Worklink</title>
 </head>
+<style>
+        .profile-container {
+                width: 50vw;
+                margin: 2vh auto;
+                display: block;
+        }
+
+        .inputUsername,
+        .inputPassword,
+        .inputEmail {
+                background-color: white;
+                outline: 0;
+                border-width: 0 0 1px;
+                box-sizing: border-box;
+                margin: 1.5vh auto;
+                height: 3vh;
+                width: 80%;
+                display: block;
+                border-radius: 3px;
+        }
+
+        .btnSubmit {
+                display: block;
+                width: 15vw;
+                margin: 5% auto 2.5% auto;
+                background-color: lightsalmon;
+                color: #ededed;
+                border-color: lightsalmon;
+                border-radius: 3px;
+                padding: 1vh;
+                transition: all 0.5s ease;
+        }
+
+        .btnSubmit:hover {
+                background-color: dimgrey;
+                color: #ededed;
+                border-color: dimgrey;
+        }
+
+        /*-- Use for content's modal when selecting interest --*/
+        .modal {
+                display: none;
+                /*-- position: absolute; --*/
+                align-items: center;
+                z-index: 1;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, 0.4);
+                /*-- Add Animation --*/
+                animation-name: animatefromtop;
+                animation-duration: 0.4s;
+                -webkit-animation-name: animatefromtop;
+                -webkit-animation-duration: 0.4s;
+                cursor: default;
+        }
+
+        @-webkit-keyframes animatefromtop {
+                from {
+                        top: -300px;
+                        opacity: 0
+                }
+
+                to {
+                        top: 0;
+                        opacity: 1
+                }
+        }
+
+        @keyframes animatefromtop {
+                from {
+                        top: -300px;
+                        opacity: 0
+                }
+
+                to {
+                        top: 0;
+                        opacity: 1
+                }
+        }
+
+        .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: xx-large;
+                font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer !important;
+        }
+
+        .modal-content {
+                background-color: white;
+                display: inline-block;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                top: 50%;
+
+                left: 50%;
+                margin: 2vh 1.5vw;
+                padding: 3%;
+                border: 1px solid #888;
+                width: 80%;
+                height: 90vh;
+        }
+
+        .interest-list {
+                list-style: none;
+                padding-left: 0 !important;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+        }
+
+        .interest-list li {
+                margin: 0 0.5vw;
+                flex: 0 0 calc(33.33% - 1vw);
+                /* Set the width for each list item */
+                /* Adjust the width percentage based on the number of items you want to show in a row */
+                text-align: center;
+        }
+
+        .circle {
+                width: 9vw;
+                height: 18vh;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid #333;
+                margin: 2vh 2vw;
+                position: relative;
+                cursor: pointer;
+        }
+
+        .circle_img {
+                width: 100%;
+                height: 100%;
+                display: block;
+        }
+
+        .circle span {
+                display: block;
+                margin-top: 0.5vh;
+                color: #000;
+        }
+
+        .circle:hover {
+                border-color: #ffcc00;
+                /* Change border color on hover */
+                transform: scale(1.1);
+                /* Scale up on hover */
+        }
+
+        .circle:active {
+                opacity: 0.7;
+                /* Reduce opacity on click */
+        }
+</style>
 
 <body>
 
@@ -27,8 +191,8 @@
         <!-------------------------------NAvigation Starts------------------>
 
         <nav class="navbar navbar-expand-md navbar-dark" style="background-color:lightsalmon;">
-                <a href="index.html" class="navbar-brand"><img src="img/png/logo-no-background.png" alt="logo" class="img-fluid"
-                                width="200vw" height="400vh"></a>
+                <a href="index.html" class="navbar-brand"><img src="img/png/logo-no-background.png" alt="logo"
+                                class="img-fluid" width="200vw" height="400vh"></a>
 
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive"><span
                                 class="navbar-toggler-icon"></span></button>
@@ -36,7 +200,8 @@
 
                 <div class="collapse navbar-collapse" id="responsive">
                         <ul class="navbar-nav mr-auto text-capitalize">
-                                <li class="nav-item"><a href="connections.html" class="nav-link active">Connections</a></li>
+                                <li class="nav-item"><a href="connections.html" class="nav-link active">Connections</a>
+                                </li>
                                 <li class="nav-item"><a href="#" class="nav-link d-md-none">logout</a></li>
                         </ul>
 
@@ -47,8 +212,8 @@
                         <a href="notification.html" class="text-decoration-none"
                                 style="color:#CBE4F2;font-size:22px;"><i
                                         class="far fa-bell ml-3 d-none d-md-block"></i></a>
-                        <img src="img/avatar-dhg.png" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
-                                height="32px">
+                        <img src="img/png/current-user.png" alt="" class="rounded-circle ml-3 d-none d-md-block"
+                                width="32px" height="32px">
 
 
 
@@ -72,220 +237,106 @@
 
         <!---------------------------MOdal Section  satrts------------------->
 
-        <div class="modal fade" id="modalview">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-
-                        <div class="modal-content">
-
-
-                                <div class="modal-header">
-                                        <div class="modal-title h4">Messages</div>
-
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-
-                                <div class="modal-body">
-
-
-                                        <ul class="list-unstyled">
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-dhg.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Jchob Thunder and
-                                                                                <strong> 1 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-                                                <hr class="my-3">
-
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-fat.jpg" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Mark Otto and <strong>
-                                                                                        3 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-
-                                                <hr class="my-3">
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-mdo.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Archer andu and
-                                                                                <strong> 5 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-                                                <hr class="my-3">
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-dhg.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Jchob Thunder and
-                                                                                <strong> 1 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-                                                <hr class="my-3">
-
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-fat.jpg" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Mark Otto and <strong>
-                                                                                        3 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-
-                                                <hr class="my-3">
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-mdo.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Archer andu and
-                                                                                <strong> 5 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-
-                                                <hr class="my-3">
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-dhg.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Jchob Thunder and
-                                                                                <strong> 1 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-                                                <hr class="my-3">
-
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-fat.jpg" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Mark Otto and <strong>
-                                                                                        3 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-
-                                                <hr class="my-3">
-
-
-                                                <a href="#" class="text-decoration-none">
-                                                        <li class="media hover-media">
-
-                                                                <img src="img/avatar-mdo.png" alt="img" width="60px"
-                                                                        height="60px" class="rounded-circle mr-3">
-
-                                                                <div class="media-body text-dark">
-                                                                        <h6 class="media-header">Archer andu and
-                                                                                <strong> 5 others</strong></h6>
-                                                                        <p class="media-text">Lorem ipsum dolor sit amet
-                                                                                consectetur adipisicing elit.</p>
-
-                                                                </div>
-
-                                                        </li>
-                                                </a>
-
-
-
-
-                                        </ul>
-
-
-
-
-
-                                </div>
-                        </div>
-
-
+        <div class="modal" id="interest-modal">
+                <div class="modal-content">
+                        <span class="close" id="closeBtn">&times;</span>
+                        <span>
+                                <h3>Please choose your area of interest (at least 1): </h3>
+                        </span>
+                        <ul class="interest-list">
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Accountant">
+                                                        <img class="circle_img"
+                                                                src="https://assets-global.website-files.com/642b3b2440806566d7573934/6446fde7b63dbe33f35f290c_623b9f191bc1d3d536b9141c_35.webp"
+                                                                alt="Accountant">
+                                                </div>
+                                                <span>Accountant</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Auditor">
+                                                        <img class="circle_img"
+                                                                src="https://www.theforage.com/blog/wp-content/uploads/2023/02/auditor-1024x768.jpg"
+                                                                alt="Auditor">
+                                                </div>
+                                                <span>Auditor</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Entreupreneur">
+                                                        <img class="circle_img"
+                                                                src="https://lovinglifeco.com/wp-content/uploads/2023/06/entrepreneur-wellbeing-blog-cover.jpg"
+                                                                alt="Entreupreneur">
+                                                </div>
+                                                <span>Entreupreneur</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Lawyer">
+                                                        <img class="circle_img"
+                                                                src="https://destinationcles.com/wp-content/uploads/2022/06/15-Lawyer-Tips-and-Tricks-to-Help-You-Succeed-in-Law-from-Destination-CLEs-at-DestinationCLEs.com_.jpg"
+                                                                alt="Lawyer">
+                                                </div>
+                                                <span>Lawyer</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Kindergarten Teacher">
+                                                        <img class="circle_img"
+                                                                src="https://www.teachersoftomorrow.org/media/how-to-become-a-kindergarten-teacher-in-5-steps.jpg"
+                                                                alt="Kindergarten Teacher">
+                                                </div>
+                                                <span>Kindergarten Teacher</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Software Developer">
+                                                        <img class="circle_img"
+                                                                src="https://usa.bootcampcdn.com/wp-content/uploads/sites/106/2020/08/CDG_blog_post_image_01.jpg"
+                                                                alt="Software Developer">
+                                                </div>
+                                                <span>Software Developer</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Doctor">
+                                                        <img class="circle_img"
+                                                                src="https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg?crop=0.66698xw:1xh;center,top&resize=1200:*"
+                                                                alt="Doctor">
+                                                </div>
+                                                <span>Doctor</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Architect">
+                                                        <img class="circle_img"
+                                                                src="https://alis.alberta.ca/media/697205/architect-istock-473849812.jpg"
+                                                                alt="Architect">
+                                                </div>
+                                                <span>Architect</span>
+                                        </center>
+                                </li>
+                                <li>
+                                        <center>
+                                                <div class="circle" id="Journalist">
+                                                        <img class="circle_img"
+                                                                src="https://www.collegetransitions.com/wp-content/uploads/2015/05/journalist-scaled-e1663787405717.jpg"
+                                                                alt="Journalist">
+                                                </div>
+                                                <span>Journalist</span>
+                                        </center>
+                                </li>
+                                <!-- Add more list items for additional images -->
+                        </ul>
                 </div>
-
-
         </div>
 
         <!-------------------------------MOdal Ends---------------------------->
@@ -297,8 +348,9 @@
 
         <div class="banner">
                 <div class="banner-title d-flex flex-column justify-content-center align-items-center">
-                        <img src="img/png/current-user.png" alt="img" class="rounded-circle" width="200vw" height="200vh">
-                        <h3 id="username" class="text-light">Dave Gamache</h3>
+                        <img src="img/png/current-user.png" alt="img" style="background-color: azure;"
+                                class="rounded-circle" width="100vw" height="100vh">
+                        <h3 id="username" style="margin-top: 2vh;" class="text-light">Dave Gamache</h3>
                         <p id="description" class="text-light">I wish i was a little bit taller, wish i was a baller,
                                 wish i had a girl… also.</p>
 
@@ -320,8 +372,67 @@
         </div>
 
         <!--------------------Image Portfolio----------------->
-        <div class="justify-content-center align-items-center">
+        <div class="profile-container">
                 <h4>Profile</h4>
+                <hr style="border-top: 2px solid rgba(0,0,0,.1);">
+                <table>
+                        <tr>
+                                <td>
+                                        Username
+                                </td>
+                                <td style="width: 100%;">
+                                        <input id="username_input" class="inputUsername" placeholder="Username"
+                                                type="text" disabled />
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        Email
+                                </td>
+                                <td>
+                                        <input id="email_input" class="inputEmail" placeholder="Email" type="text"
+                                                disabled />
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        Profession
+                                </td>
+                                <td>
+                                        <input id="profession_input" class="inputUsername" placeholder="Your profession"
+                                                type="text" disabled />
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        Description
+                                </td>
+                                <td>
+                                        <textarea id="description_input" class="inputUsername"
+                                                style="height: 10vh; resize:none; border-width: 1px 1px 1px;"
+                                                placeholder="Tell us about yourself!" type="text" disabled></textarea>
+                                </td>
+                        </tr>
+                        <tr>
+                                <td>
+                                        Interest(s)
+                                </td>
+                                <td style="display: flex;">
+                                        <div style="display: grid; place-items: center;">
+                                                <p id="interest_list" style="margin: 0 10vh;"></p>
+                                        </div>
+                                        <button id="interestBtn" type="button"
+                                                style="display: none; margin: 10px auto 10px auto;"
+                                                onclick="interest_modal()" class="btnSubmit">Choose your interest
+                                                again here!</button>
+                                </td>
+                        </tr>
+                </table>
+                <center>
+                        <button id="editBtn" type="button" class="btnSubmit" style="float: left;">Edit</button>
+                        <button id="saveBtn" type="button" class="btnSubmit" onclick="save_changes()"
+                                style="display: none;">Save</button>
+                </center>
         </div>
 
 
@@ -385,15 +496,50 @@
         <script>
                 document.addEventListener('DOMContentLoaded', function () {
                         if (localStorage.username != "" && localStorage.description != "") {
+                                // In banner
                                 document.getElementById("username").innerHTML = localStorage.username;
                                 document.getElementById("description").innerHTML = localStorage.description;
+
+                                // In profile
+                                document.getElementById("username_input").value = localStorage.username;
+                                document.getElementById("description_input").value = localStorage.description;
+                                document.getElementById("email_input").value = localStorage.email;
+                                document.getElementById("profession_input").value = localStorage.profession;
+                                document.getElementById("interest_list").innerHTML = localStorage.selected_interest;
                         }
                 }, false);
+
+
+                $("#editBtn").on("click", function (e) {
+                        if ($("#editBtn").html() == "Edit") {
+                                $("#username_input").prop('disabled', false);
+                                $("#description_input").prop('disabled', false);
+                                $("#email_input").prop('disabled', false);
+                                $("#profession_input").prop('disabled', false);
+
+                                $("#interestBtn").css("display", "block");
+                                $("#saveBtn").css("display", "inline-block");
+
+                                $("#editBtn").html('Cancel');
+                        }
+                        else {
+                                $("#username_input").prop('disabled', true);
+                                $("#description_input").prop('disabled', true);
+                                $("#email_input").prop('disabled', true);
+                                $("#profession_input").prop('disabled', true);
+
+                                $("#interestBtn").css("display", "none");
+                                $("#saveBtn").css("display", "none");
+                        }
+                });
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="/script.js"></script>
+
 </body>
 
 </html>

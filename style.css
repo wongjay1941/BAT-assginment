@@ -17,12 +17,12 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 500px;
+    height: 40vh;
 
 }
 
 .banner-title{
-    transform: translateY(150px)
+    transform: translateY(80px)
 }
 .banner-end{
     transform: translateY(280px)
