@@ -29,9 +29,7 @@
 
         <div class="collapse navbar-collapse" id="responsive">
             <ul class="navbar-nav mr-auto text-capitalize">
-                <li class="nav-item"><a href="index.html" class="nav-link active">Connections</a></li>
-                <li class="nav-item"><a href="profile.html" class="nav-link">Channel</a></li>
-                <li class="nav-item"><a href="#modalview" class="nav-link" data-toggle="modal">Friends</a></li>
+                <li class="nav-item"><a href="#accountant" class="nav-link active">Connections</a></li>
                 <li class="nav-item"><a href="#" class="nav-link d-md-none">logout</a></li>
             </ul>
 
@@ -234,9 +232,9 @@
                         <div class="card-body">
                             <h5 class="mb-3 card-title">Connections</h5>
                             <ul class="list-unstyled">
-                                <li><a href="#" class="text-decoration-none">Accountant</a></li>
-                                <li><a href="#" class="text-decoration-none">Auditor</a></li>
-                                <li><a href="#" class="text-decoration-none">Entrepreneur</a></li>
+                                <li><a href="#accountant" class="nav-link selected">Accountant</a></li>
+                                <li><a href="#auditor" class="nav-link">Auditor</a></li>
+                                <li><a href="#entrepreneur" class="nav-link">Entrepreneur</a></li>
                                 <!-- Add more items as needed -->
                             </ul>
                         </div>
@@ -293,7 +291,7 @@
                                             <!-- Add a comment form -->
                                             <form class="comment-form mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Write a comment...">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Post</button>
                                             </form>
@@ -358,7 +356,7 @@
                                             <!-- Add a comment form -->
                                             <form class="comment-form mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Write a comment...">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Post</button>
                                             </form>
@@ -423,7 +421,7 @@
                                             <!-- Add a comment form -->
                                             <form class="comment-form mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Write a comment...">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Post</button>
                                             </form>
@@ -433,40 +431,43 @@
                             </div>
                         </div>
                         <!-- Accountant connection end here -->
-                    </div>
-                </div>
-            </div>
-            <br> <br> <br><br> <br> <br>
-            <!------------------------Middle column Ends---------------->
-            <!------------------------Light BOx OPtions------------->
-            <script>
-                /*Region Make Posting*/
-                document.getElementById('postForm').addEventListener('submit', function (event) {
 
-                    event.preventDefault();
-                    const message = document.getElementById('message').value.trim();
-
-                    if (message !== '') {
-
-                        const newPostTemplate = `
-							<div class="card-body">
+                        <!-- Auditor connection start here -->
+                        <div id="auditorConnection" style="display: none;">
+                            <div class="card-body">
                                 <div class="media">
-                                    <img src="img/png/.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <img src="img/png/cortnie-micki.png" alt="Auditor Avatar" class="rounded-circle mr-3" width="55px" height="55px">
                                     <div class="media-body">
-                                        <h5>Current User</h5>
+                                        <h5>Cortnie Micki</h5>
                                         <p class="card-text text-justify">
-                                            ${message}
+                                            Auditors play a pivotal role in ensuring financial transparency and trust in organizations. Their independent assessment of financial records and compliance is crucial. What are your views on the evolving challenges faced by auditors today?
                                         </p>
-                                        <span class="like-count">0</span> Likes
-                                        <small class="time-ago">Just now</small>
+                                        <span class="like-count">15</span> Likes
+                                        <small class="time-ago">2 days ago</small>
                                         <div class="reactions mt-3">
                                             <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
                                             <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
                                         </div>
                                         <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/gwynfor-derian.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Gwynfor Derian</h6>
+                                                    <p>Agreed! The rapid technological advancements and globalization have indeed added complexity to the auditing landscape.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/zhong-donato.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Zhong Donato</h6>
+                                                    <p>Ensuring data security and navigating through diverse regulatory frameworks are among the significant challenges auditors face today.</p>
+                                                </div>
+                                            </div>
+                                            <!-- More comments can follow -->
+                                            <!-- Add a comment form -->
                                             <form class="comment-form mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Write a comment...">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Post</button>
                                             </form>
@@ -476,7 +477,375 @@
                             </div>
 
                             <hr />
-					    `;
+
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/zhong-donato.png" alt="Auditor Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Zhong Donato</h5>
+                                        <p class="card-text text-justify">
+                                            Auditors face constant challenges in adapting to new technologies and regulatory changes. How do you think auditors can better prepare themselves for the evolving landscape?
+                                        </p>
+                                        <span class="like-count">8</span> Likes
+                                        <small class="time-ago">5 days ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/shume-sareena.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Shume Sareena</h6>
+                                                    <p>Continuous learning and staying updated with technological advancements are crucial for auditors today.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/nikitas-yigit.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Nikitas Yigit</h6>
+                                                    <p>Auditors should engage in continuous professional development to keep up with the fast-paced changes.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/faheem-mehul.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Faheem Mehul</h6>
+                                                    <p>Technology has transformed the audit landscape. Adaptability is key!</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/zekai-justas.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Zekai Justas</h6>
+                                                    <p>Continuous monitoring helps auditors identify risks and potential irregularities in real-time.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/mashiyat-eadie.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Mashiyat Eadie</h6>
+                                                    <p>Adopting advanced data analytics is transforming the way audits are conducted.</p>
+                                                </div>
+                                            </div>
+                                            <!-- More comments can follow -->
+                                            <!-- Add a comment form -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/callie-rose.png" alt="Auditor Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Callie-Rose</h5>
+                                        <p class="card-text text-justify">
+                                            How do auditors balance independence and collaboration while ensuring accurate financial reporting and compliance?
+                                        </p>
+                                        <span class="like-count">12</span> Likes
+                                        <small class="time-ago">1 week ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/mashiyat-eadie.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Mashiyat Eadie</h6>
+                                                    <p>Independence doesn't mean isolation. Collaboration fosters better understanding and results.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/cortnie-micki.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Cortnie Micki</h6>
+                                                    <p>Auditors should navigate the fine line between objectivity and effective communication with stakeholders.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/zhong-donato.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Zhong Donato</h6>
+                                                    <p>Auditors must maintain ethical integrity while balancing the interests of all stakeholders.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/shume-sareena.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Shume Sareena</h6>
+                                                    <p>Transparency and accountability are the pillars of successful audit practices.</p>
+                                                </div>
+                                            </div>
+                                            <!-- Add a comment form -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Auditor connection end here -->
+
+                        <!-- Entrepreneur connection start here -->
+                        <div id="entrepreneurConnection" style="display: none;">
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/shume-sareena.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Shume Sareena</h5>
+                                        <p class="card-text text-justify">
+                                            Planning to scale your business? Share your growth strategies and experiences here!
+                                        </p>
+                                        <span class="like-count">15</span> Likes
+                                        <small class="time-ago">3 hours ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <!-- Comments will appear here -->
+                                            <!-- Feel free to add comments -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/gwynfor-derian.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Gwynfor Derian</h5>
+                                        <p class="card-text text-justify">
+                                            Excited to share my journey in establishing a startup! Looking forward to discussing challenges and successes in the entrepreneurial world.
+                                        </p>
+                                        <span class="like-count">25</span> Likes
+                                        <small class="time-ago">5 hours ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/nikitas-yigit.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Nikitas Yigit</h6>
+                                                    <p>Scaling strategies need to focus on sustainable growth to maintain stability in a competitive market.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/cortnie-micki.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Cortnie Micki</h6>
+                                                    <p>The startup journey is full of twists and turns! It's inspiring to hear about your challenges and how you've overcome them.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/zhong-donato.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Zhong Donato</h6>
+                                                    <p>Networking played a pivotal role in my startup's growth. Building relationships opened doors to unexpected opportunities!</p>
+                                                </div>
+                                            </div>
+                                            <!-- More comments can follow -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/mashiyat-eadie.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Mashiyat Eadie</h5>
+                                        <p class="card-text text-justify">
+                                            Exploring the power of networking in the business world! Let's discuss how connecting with the right people impacts growth.
+                                        </p>
+                                        <span class="like-count">18</span> Likes
+                                        <small class="time-ago">1 day ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/callie-rose.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Callie-Rose</h6>
+                                                    <p>Indeed, networking isn't just about what you know but who you know. It's amazing how connections can catalyze business success!</p>
+                                                </div>
+                                            </div>
+                                            <!-- Feel free to add comments -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/waheeda-lakaya.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Waheeda Lakaya</h5>
+                                        <p class="card-text text-justify">
+                                            Sharing tips on leveraging social media for business growth! Let's dive into effective marketing strategies.
+                                        </p>
+                                        <span class="like-count">30</span> Likes
+                                        <small class="time-ago">1 month ago</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                        </div>
+                                        <div class="comments mt-3">
+                                            <div class="media mb-3">
+                                                <img src="img/png/faheem-mehul.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Faheem Mehul</h6>
+                                                    <p>Social media is a game-changer for startups. It's all about creating engaging content and building a community!</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/zekai-justas.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Zekai Justas</h6>
+                                                    <p>Absolutely! Social media is a powerful tool for brand building. Consistency and engagement are key to a successful online presence.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/nikitas-yigit.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Nikitas Yigit</h6>
+                                                    <p>Diving into analytics helps understand what works best for your audience. Tracking metrics guides in refining marketing strategies.</p>
+                                                </div>
+                                            </div>
+                                            <div class="media mb-3">
+                                                <img src="img/png/callie-rose.png" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                <div class="media-body">
+                                                    <h6>Callie-Rose</h6>
+                                                    <p>Content that resonates with your audience sparks conversations. It's crucial to create value and interact with your followers!</p>
+                                                </div>
+                                            </div>
+                                            <!-- More comments can follow -->
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Entrepreneur connection end here -->
+                    </div>
+                </div>
+            </div>
+            <br> <br> <br><br> <br> <br>
+            <!------------------------Middle column Ends---------------->
+            <!------------------------Light BOx OPtions------------->
+            <script>
+                /*Region Navigation Connections*/
+                const links = document.querySelectorAll('.nav-link');
+                const connections = {
+                    accountant: document.getElementById('accountantConnection'),
+                    auditor: document.getElementById('auditorConnection'),
+                    entrepreneur: document.getElementById('entrepreneurConnection')
+                };
+
+                links.forEach(link => {
+                    link.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        const selectedConnection = link.getAttribute('href').substring(1);
+
+                        for (const connection in connections) {
+                            if (Object.prototype.hasOwnProperty.call(connections, connection)) {
+                                const connectionElement = connections[connection];
+                                const selected = selectedConnection === connection;
+
+                                document.querySelector(`a[href="#${connection}"]`).classList.toggle('selected', selected);
+                                connectionElement.style.display = selected ? 'block' : 'none';
+                            }
+                        }
+
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+                /*End Region Navigation Connections*/
+
+                /*Region Make Posting*/
+                document.getElementById('postForm').addEventListener('submit', function (event) {
+
+                    event.preventDefault();
+                    const message = document.getElementById('message').value.trim();
+
+                    if (message !== '') {
+
+                        const newPostTemplate = `
+                                                    <div class="card-body">
+                                                        <div class="media">
+                                                            <img src="img/png/current-user.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                                            <div class="media-body">
+                                                                <h5>Current User</h5>
+                                                                <p class="card-text text-justify">
+                                                                    ${message}
+                                                                </p>
+                                                                <span class="like-count">0</span> Likes
+                                                                <small class="time-ago">Just now</small>
+                                                                <div class="reactions mt-3">
+                                                                    <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                                                    <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
+                                                                </div>
+                                                                <div class="comments mt-3">
+                                                                    <form class="comment-form mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" placeholder="Share your thoughts...">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary">Post</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr />
+                                                `;
 
                         const accountantConnection = document.getElementById('accountantConnection');
                         accountantConnection.insertAdjacentHTML('afterbegin', newPostTemplate);
@@ -486,6 +855,7 @@
                 /*End Region Make Posting*/
 
                 document.addEventListener("click", function (event) {
+
                     /* Like Button */
                     if (event.target.classList.contains('like-btn')) {
                         const button = event.target;
@@ -508,6 +878,7 @@
 
                     /* Comment Button */
                     if (event.target.classList.contains('comment-btn')) {
+
                         const button = event.target;
                         const commentsSection = button.closest('.card-body').querySelector('.comments');
                         const commentInput = commentsSection.querySelector('.form-control');
@@ -515,22 +886,26 @@
                     }
 
                     /* Post Comment Button */
-                    if (event.target.classList.contains('btn-primary') && event.target.parentNode.classList.contains('comment-form')) {
+                    if (event.target.classList.contains('btn-primary') &&
+                        event.target.parentNode.classList.contains('comment-form')) {
+
+                        event.preventDefault();
+
                         const form = event.target.parentNode;
                         const commentsSection = form.closest('.comments');
                         const commentInput = form.querySelector('.form-control');
-                        const newCommentText = commentInput.value;
+                        const newCommentText = commentInput.value.trim();
 
-                        if (newCommentText !== "") {
+                        if (newCommentText !== '') {
                             const newComment = document.createElement('div');
                             newComment.classList.add('media', 'mb-3');
                             newComment.innerHTML = `
-                                <img src="img/user_avatar.jpg" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
-                                <div class="media-body">
-                                    <h6>Current User</h6>
-                                    <p>${newCommentText}</p>
-                                </div>
-                            `;
+                                                        <img src="img/png/current-user.jpg" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                                        <div class="media-body">
+                                                            <h6>Current User</h6>
+                                                            <p>${newCommentText}</p>
+                                                        </div>
+                                                    `;
 
                             commentsSection.insertBefore(newComment, form);
                             commentInput.value = '';
