@@ -250,15 +250,10 @@
                 <div class="middle-column">
                     <div class="card">
                         <div class="card-header bg-transparent">
-                            <form class="form-inline">
+                            <form class="form-inline" id="postForm">
                                 <div class="input-group w-100">
                                     <input type="text" name="message" id="message" placeholder="Message" class="form-control form-control-md">
-
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-camera"></i>
-                                        </div>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary ml-2">Post</button>
                                 </div>
                             </form>
                         </div>
@@ -445,76 +440,102 @@
             <!------------------------Middle column Ends---------------->
             <!------------------------Light BOx OPtions------------->
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
+                /*Region Make Posting*/
+                document.getElementById('postForm').addEventListener('submit', function (event) {
 
-                    /*Region Like and Unlike Button*/
-                    const likeButtons = document.querySelectorAll('.like-btn');
+                    event.preventDefault();
+                    const message = document.getElementById('message').value.trim();
 
-                    likeButtons.forEach(button => {
-                        button.addEventListener('click', function () {
+                    if (message !== '') {
 
-                            const cardBody = this.closest('.card-body');
-                            const likeCount = cardBody.querySelector('.like-count');
-                            let currentLikes = parseInt(likeCount.textContent);
-
-                            if (this.classList.contains('liked')) {
-
-                                this.innerHTML = '<i class="far fa-thumbs-up"></i> Like';
-                                this.classList.remove('liked');
-                                currentLikes--;
-                            } else {
-
-                                this.innerHTML = '<i class="fas fa-thumbs-up"></i> Unlike';
-                                this.classList.add('liked');
-                                currentLikes++;
-                            }
-
-                            likeCount.textContent = currentLikes;
-                        });
-                    });
-                    /*End Region Like and Unlike Button*/
-
-                    /*Region Comment Button*/
-                    const commentButtons = document.querySelectorAll('.comment-btn');
-
-                    commentButtons.forEach(button => {
-                        button.addEventListener('click', function () {
-
-                            const commentsSection = this.closest('.card-body').querySelector('.comments');
-                            const commentInput = commentsSection.querySelector('.form-control');
-                            commentInput.focus();
-                        });
-                    });
-                    /*End Region Comment Button*/
-
-                    /*Region Post Comment*/
-                    const commentForms = document.querySelectorAll('.comment-form');
-
-                    commentForms.forEach(form => {
-                        form.addEventListener('submit', function (event) {
-                            event.preventDefault(); // Prevent the default form submission
-                            const commentsSection = this.closest('.comments');
-                            const commentInput = this.querySelector('.form-control');
-                            const newCommentText = commentInput.value;
-
-                            if (newCommentText != "") {
-
-                                const newComment = document.createElement('div');
-                                newComment.classList.add('media', 'mb-3');
-                                newComment.innerHTML = `
-                                    <img src="img/user_avatar.jpg" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
-                                        <div class="media-body">
-                                            <h6>Current User</h6>
-                                            <p>${newCommentText}</p>
+                        const newPostTemplate = `
+							<div class="card-body">
+                                <div class="media">
+                                    <img src="img/png/.png" alt="User Avatar" class="rounded-circle mr-3" width="55px" height="55px">
+                                    <div class="media-body">
+                                        <h5>Current User</h5>
+                                        <p class="card-text text-justify">
+                                            ${message}
+                                        </p>
+                                        <span class="like-count">0</span> Likes
+                                        <small class="time-ago">Just now</small>
+                                        <div class="reactions mt-3">
+                                            <button class="btn btn-outline-primary like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                                            <button class="btn btn-outline-primary comment-btn"><i class="far fa-comment"></i> Comment</button>
                                         </div>
-                                `;
+                                        <div class="comments mt-3">
+                                            <form class="comment-form mt-3">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Write a comment...">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                commentsSection.insertBefore(newComment, this);
-                                commentInput.value = '';
-                            }
-                        });
-                    });
+                            <hr />
+					    `;
 
+                        const accountantConnection = document.getElementById('accountantConnection');
+                        accountantConnection.insertAdjacentHTML('afterbegin', newPostTemplate);
+                        document.getElementById('message').value = '';
+                    }
+                });
+                /*End Region Make Posting*/
+
+                document.addEventListener("click", function (event) {
+                    /* Like Button */
+                    if (event.target.classList.contains('like-btn')) {
+                        const button = event.target;
+                        const cardBody = button.closest('.card-body');
+                        const likeCount = cardBody.querySelector('.like-count');
+                        let currentLikes = parseInt(likeCount.textContent);
+
+                        if (button.classList.contains('liked')) {
+                            button.innerHTML = '<i class="far fa-thumbs-up"></i> Like';
+                            button.classList.remove('liked');
+                            currentLikes--;
+                        } else {
+                            button.innerHTML = '<i class="fas fa-thumbs-up"></i> Unlike';
+                            button.classList.add('liked');
+                            currentLikes++;
+                        }
+
+                        likeCount.textContent = currentLikes;
+                    }
+
+                    /* Comment Button */
+                    if (event.target.classList.contains('comment-btn')) {
+                        const button = event.target;
+                        const commentsSection = button.closest('.card-body').querySelector('.comments');
+                        const commentInput = commentsSection.querySelector('.form-control');
+                        commentInput.focus();
+                    }
+
+                    /* Post Comment Button */
+                    if (event.target.classList.contains('btn-primary') && event.target.parentNode.classList.contains('comment-form')) {
+                        const form = event.target.parentNode;
+                        const commentsSection = form.closest('.comments');
+                        const commentInput = form.querySelector('.form-control');
+                        const newCommentText = commentInput.value;
+
+                        if (newCommentText !== "") {
+                            const newComment = document.createElement('div');
+                            newComment.classList.add('media', 'mb-3');
+                            newComment.innerHTML = `
+                                <img src="img/user_avatar.jpg" alt="User Avatar" class="rounded-circle mr-3" width="45px" height="45px">
+                                <div class="media-body">
+                                    <h6>Current User</h6>
+                                    <p>${newCommentText}</p>
+                                </div>
+                            `;
+
+                            commentsSection.insertBefore(newComment, form);
+                            commentInput.value = '';
+                        }
+                    }
                 });
             </script>
             <!------------------------Light BOx OPtions------------->
