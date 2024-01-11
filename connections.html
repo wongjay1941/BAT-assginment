@@ -266,7 +266,7 @@
             <!---------------------------------------Middle columns  start---------------->
             <div class="col-12 col-lg-9">
                 <div class="middle-column">
-                    <div class="card">
+                    <div id="connection_div" class="card">
                         <div class="card-header bg-transparent">
                             <form class="form-inline" id="postForm">
                                 <div class="input-group w-100">
@@ -946,12 +946,12 @@
 
                     for(var i = 0; i < a_list.length; i++){
                         if(a_list[i].tagName == 'A'){
-                            hrefs.push(a_list[i].getAttribute("href"));
+                            hrefs.push(a_list[i].getAttribute("href").replace(" ", "_"));
                         }
                     }
 
                     create_connections.forEach(function(item, index){
-                        var connection = item.toLowerCase();
+                        var connection = item.toLowerCase().replace(" ", "_");
                         var href = "#" + connection;
                         
                         console.log(href);
@@ -959,6 +959,20 @@
 
                         if(!(hrefs.includes(href))){
                             connections_list.innerHTML += `<li><a href="#${connection}" class="nav-link">${item}</a></li>`
+                            const connection_div = document.getElementById("connection_div");
+
+                            const new_connection_template = `
+                                <div id="${connection}Connection">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            
+                                        </div>
+                                    </div>;
+                                </div>
+                                `;
+
+                            connection_div.innerHTML += new_connection_template;
+
                         }
                     });
                 
