@@ -202,18 +202,17 @@
                         <ul class="navbar-nav mr-auto text-capitalize">
                                 <li class="nav-item"><a href="connections.html" class="nav-link active">Connections</a>
                                 </li>
-                                <li class="nav-item"><a href="#" class="nav-link d-md-none">logout</a></li>
+                                <li class="nav-item"><a href="/" class="nav-link active">logout</a></li>
                         </ul>
 
                         <form action="" class="form-inline ml-auto d-none d-md-block">
-                                <input type="text" name="search" id="search" placeholder="Search"
-                                        class="form-control form-control-sm">
-                        </form>
-                        <a href="notification.html" class="text-decoration-none"
-                                style="color:#CBE4F2;font-size:22px;"><i
-                                        class="far fa-bell ml-3 d-none d-md-block"></i></a>
-                        <img src="img/png/current-user.png" alt="" class="rounded-circle ml-3 d-none d-md-block"
-                                width="32px" height="32px">
+                                <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm" style="display: none;">
+                            </form>
+                            <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px; display:none;"><i
+                                    class="far fa-bell ml-3 d-none d-md-block"></i></a>
+                            <a href="profile.html"><img src="img/png/current-user.png" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
+                                height="32px">
+                            </a>
 
 
 
@@ -494,20 +493,18 @@
 
         <!--Script-->
         <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                        if (localStorage.username != "" && localStorage.description != "") {
-                                // In banner
-                                document.getElementById("username").innerHTML = localStorage.username;
-                                document.getElementById("description").innerHTML = localStorage.description;
+                if (localStorage.username != "" && localStorage.description != "") {
+                        // In banner
+                        document.getElementById("username").innerHTML = localStorage.username;
+                        document.getElementById("description").innerHTML = localStorage.description;
 
-                                // In profile
-                                document.getElementById("username_input").value = localStorage.username;
-                                document.getElementById("description_input").value = localStorage.description;
-                                document.getElementById("email_input").value = localStorage.email;
-                                document.getElementById("profession_input").value = localStorage.profession;
-                                document.getElementById("interest_list").innerHTML = localStorage.selected_interest;
-                        }
-                }, false);
+                        // In profile
+                        document.getElementById("username_input").value = localStorage.username;
+                        document.getElementById("description_input").value = localStorage.description;
+                        document.getElementById("email_input").value = localStorage.email;
+                        document.getElementById("profession_input").value = localStorage.profession;
+                        document.getElementById("interest_list").innerHTML = localStorage.selected_interest;
+                }
 
 
                 $("#editBtn").on("click", function (e) {
@@ -523,6 +520,8 @@
                                 $("#editBtn").html('Cancel');
                         }
                         else {
+                                document.getElementById("interest_list").innerHTML = localStorage.selected_interest;
+
                                 $("#username_input").prop('disabled', true);
                                 $("#description_input").prop('disabled', true);
                                 $("#email_input").prop('disabled', true);
@@ -530,6 +529,8 @@
 
                                 $("#interestBtn").css("display", "none");
                                 $("#saveBtn").css("display", "none");
+
+                                $("#editBtn").html('Edit');
                         }
                 });
         </script>

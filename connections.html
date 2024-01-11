@@ -34,13 +34,13 @@
         <div class="collapse navbar-collapse" id="responsive">
             <ul class="navbar-nav mr-auto text-capitalize">
                 <li class="nav-item"><a href="#accountant" class="nav-link active">Connections</a></li>
-                <li class="nav-item"><a href="#" class="nav-link d-md-none">logout</a></li>
+                <li class="nav-item"><a href="" class="nav-link active" onclick="window.location.href = 'index.html'">logout</a></li>
             </ul>
 
             <form action="" class="form-inline ml-auto d-none d-md-block">
-                <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm">
+                <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm" style="display: none;">
             </form>
-            <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i
+            <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px; display:none;"><i
                     class="far fa-bell ml-3 d-none d-md-block"></i></a>
             <a href="profile.html"><img src="img/png/current-user.png" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
                 height="32px">
@@ -931,60 +931,68 @@
             <!------------------------Middle column Ends---------------->
             <!------------------------Light BOx OPtions------------->
             <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    if (localStorage.username != "" && localStorage.description != "") {
-                            document.getElementById("username").innerHTML = localStorage.username;
-                            document.getElementById("description").innerHTML = localStorage.description;
-                    }
+                if (localStorage.username != "" && localStorage.description != "") {
+                        document.getElementById("username").innerHTML = localStorage.username;
+                        document.getElementById("description").innerHTML = localStorage.description;
+                }
 
-                    /*Update connections list based on selected_interest*/
-                    const create_connections = localStorage.selected_interest.split(",");
-                    const connections_list = document.getElementById("connections_list");
-                    const a_list = document.querySelectorAll(".connections_list li a");
-                    
-                    var hrefs = [];
-
-                    for(var i = 0; i < a_list.length; i++){
-                        if(a_list[i].tagName == 'A'){
-                            hrefs.push(a_list[i].getAttribute("href").replace(" ", "_"));
-                        }
-                    }
-
-                    create_connections.forEach(function(item, index){
-                        var connection = item.toLowerCase().replace(" ", "_");
-                        var href = "#" + connection;
-                        
-                        console.log(href);
-                        console.log(hrefs);
-
-                        if(!(hrefs.includes(href))){
-                            connections_list.innerHTML += `<li><a href="#${connection}" class="nav-link">${item}</a></li>`
-                            const connection_div = document.getElementById("connection_div");
-
-                            const new_connection_template = `
-                                <div id="${connection}Connection">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            
-                                        </div>
-                                    </div>;
-                                </div>
-                                `;
-
-                            connection_div.innerHTML += new_connection_template;
-
-                        }
-                    });
+                /*Update connections list based on selected_interest*/
+                const create_connections = localStorage.selected_interest.split(",");
+                const connections_list = document.getElementById("connections_list");
+                const a_list = document.querySelectorAll(".connections_list li a");
                 
-            }, false);
+                var hrefs = [];
+
+                for(var i = 0; i < a_list.length; i++){
+                    if(a_list[i].tagName == 'A'){
+                        hrefs.push(a_list[i].getAttribute("href").replace(" ", "_"));
+                    }
+                }
+
+                create_connections.forEach(function(item, index){
+                    var connection = item.toLowerCase().replace(" ", "_");
+                    var href = "#" + connection;
+
+                    if(!(hrefs.includes(href))){
+                        connections_list.innerHTML += `<li><a href="#${connection}" class="nav-link">${item}</a></li>`
+                        const connection_div = document.getElementById("connection_div");
+
+                        const new_connection_template = `
+                            <div id="${connection}Connection">
+                                <div class="card-body">
+                                    <div class="media" style="color: grey;">
+                                        <p id="nothing_text">There is nothing here yet~</p>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                        connection_div.innerHTML += new_connection_template;
+
+                    }
+                });
 
                 /*Region Navigation Connections*/
                 const links = document.querySelectorAll('.nav-link');
-                const connections = {
-                    accountant: document.getElementById('accountantConnection'),
-                    auditor: document.getElementById('auditorConnection'),
-                    entrepreneur: document.getElementById('entrepreneurConnection')
-                };
+                var connection_div = document.getElementById("connection_div").children;
+                connection_div = Array.from(connection_div);
+                var connections = {};
+                
+                connection_div.forEach(function(item, index){
+                    if(item.tagName == "DIV" && item.getAttribute("id") != null){
+                        var id = item.getAttribute("id");
+                        id = id.slice(0, -10);
+                        connections[id] = item;
+                    }
+                });
+
+                console.log(connections);
+
+                //const connections = {
+                //    accountant: document.getElementById('accountantConnection'),
+                //    auditor: document.getElementById('auditorConnection'),
+                //    entrepreneur: document.getElementById('entrepreneurConnection')
+                //};
 
                 links.forEach(link => {
                     link.addEventListener('click', function (event) {
@@ -1049,6 +1057,8 @@
                         if (visibleConnection) {
                             visibleConnection.insertAdjacentHTML('afterbegin', newPostTemplate);
                             document.getElementById('message').value = '';
+
+                            document.getElementById('nothing_text').style.display = "none";
                         }
                     }
                 });
