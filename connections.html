@@ -42,7 +42,7 @@
             </form>
             <a href="notification.html" class="text-decoration-none" style="color:#CBE4F2;font-size:22px;"><i
                     class="far fa-bell ml-3 d-none d-md-block"></i></a>
-            <a href="profile.html"><img src="img/avatar-dhg.png" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
+            <a href="profile.html"><img src="img/png/current-user.png" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
                 height="32px">
             </a>
 
@@ -251,7 +251,7 @@
                     <div class="card shadow-sm card-left2 mb-4">
                         <div class="card-body">
                             <h5 class="mb-3 card-title">Connections</h5>
-                            <ul class="list-unstyled">
+                            <ul id="connections_list" class="list-unstyled connections_list">
                                 <li><a href="#accountant" class="nav-link">Accountant</a></li>
                                 <li><a href="#auditor" class="nav-link">Auditor</a></li>
                                 <li><a href="#entrepreneur" class="nav-link">Entrepreneur</a></li>
@@ -936,6 +936,32 @@
                             document.getElementById("username").innerHTML = localStorage.username;
                             document.getElementById("description").innerHTML = localStorage.description;
                     }
+
+                    /*Update connections list based on selected_interest*/
+                    const create_connections = localStorage.selected_interest.split(",");
+                    const connections_list = document.getElementById("connections_list");
+                    const a_list = document.querySelectorAll(".connections_list li a");
+                    
+                    var hrefs = [];
+
+                    for(var i = 0; i < a_list.length; i++){
+                        if(a_list[i].tagName == 'A'){
+                            hrefs.push(a_list[i].getAttribute("href"));
+                        }
+                    }
+
+                    create_connections.forEach(function(item, index){
+                        var connection = item.toLowerCase();
+                        var href = "#" + connection;
+                        
+                        console.log(href);
+                        console.log(hrefs);
+
+                        if(!(hrefs.includes(href))){
+                            connections_list.innerHTML += `<li><a href="#${connection}" class="nav-link">${item}</a></li>`
+                        }
+                    });
+                
             }, false);
 
                 /*Region Navigation Connections*/
